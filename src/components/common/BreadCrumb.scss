@@ -1,0 +1,16 @@
+$header-bg-color:#2b2b2b;
+
+.breadcrumb{
+  display: flex;
+  color: $header-bg-color;
+  background-color: #fff;
+  padding: 1rem;
+
+  .lbl{
+    margin-top: 2px;
+  }
+
+  a{
+    text-decoration:none;
+  }
+}

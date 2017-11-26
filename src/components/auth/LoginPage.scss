@@ -1,0 +1,33 @@
+$header-bg-color:#2b2b2b;
+.container--fluid{
+  display:flex;
+  flex-direction: column;
+
+  .container--card{
+    color:#ccc;
+    position: relative;
+    margin: 10rem;
+    background-color: $header-bg-color;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 2px;
+  }
+
+  .container--row{
+    padding:1rem;
+  }
+
+  .btn--group{
+    display: flex;
+    flex-direction:row;
+    margin:20px;
+    float:right;
+  }
+
+  label, input{
+    color:#ccc !important;
+  }
+
+}
