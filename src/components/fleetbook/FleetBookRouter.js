@@ -3,7 +3,9 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import LeftNav          from './../common/LeftNav';
 
 import DashboardLink    from './dashboard/DashboardLink';
+import OperationsLink   from './operations/OperationsLink';
 import WorkordersPage   from './workorders/WorkordersPage';
+import './FleetBookRouter.scss';
 
 class FleetBookPage extends React.Component{
   constructor(props){
@@ -16,15 +18,16 @@ class FleetBookPage extends React.Component{
 
   render(){
     return(
-      <div className="container--fluid">
+      <div className="container-fluid">
         <div className="container--flex">
           <LeftNav />
-          <div className="contentspace">
+          <main role="main" className="col-sm-9 ml-sm-auto col-md-10 pt-3">
           <Switch>
             <Route path="/fleetbook/dashboard"   component={DashboardLink}/>
+            <Route path="/fleetbook/operations"  component={OperationsLink}/>
             <Route path="/fleetbook/workorders"  component={WorkordersPage}/>
           </Switch>
-          </div>
+          </main>
         </div>
       </div>
     );

@@ -17,7 +17,7 @@ class PublicPage extends React.Component{
     return(
       <div className="fullwidthheight">
       <HeaderLink />
-      <main style={{position: 'relative', marginTop: '4rem'}}>
+      <main style={{position: 'relative', top:'3.8rem'}}>
         <Switch>
           <Route path="/"       exact  component={HomePage} />
           <Route path="/about"    component={AboutPage} />

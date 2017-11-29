@@ -1,39 +1,35 @@
 import React          from 'react';
 import { NavLink }    from 'react-router-dom';
 import  AppBar        from 'material-ui/AppBar';
-import FleetBookLogo  from 'material-ui/svg-icons/maps/directions-bus';
+
 import MoreVertIcon   from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/navigation/more-vert';
+
+import * as bootstrap from 'bootstrap';
 import './Header.scss';
 
-const BeforeLogged = (props) => (
-  <div id="navbar">
-  <ul>
-  <li><NavLink exact  activeClassName="active" to="/">Home</NavLink></li>
-  <li><NavLink exact activeClassName="active" to="/aboutus">About Us</NavLink></li>
-  <li><NavLink exact activeClassName="active" to="/login">Login</NavLink></li>
-  </ul>
+const Publicview = () => (
+  <div>
+  <a href="#/login" className="btn btn-primary navbar-btn">Sign in</a>
   </div>
 );
 
-const AfterLogged = ({onSignOutClick}) => {
+const Privateview = ({onSignOutClick}) =>{
   return(
-    <IconMenu
-    iconButtonElement={
-      <FloatingActionButton mini={true} style={{marginTop: 10}}>
-        <ContentAdd />
-      </FloatingActionButton>
-    }
-    targetOrigin={{horizontal: 'right', vertical: 'top', color:'#ccc !important'}}
-    anchorOrigin={{horizontal: 'right', vertical: 'top', color:'#ccc !important'}} >
-      <MenuItem primaryText="Refresh" />
-      <MenuItem primaryText="Help" />
-      <MenuItem primaryText="Sign out" onClick={(event)=> onSignOutClick()} />
-    </IconMenu>
+    <div className="icon--group">
+      <IconMenu
+      iconButtonElement={
+        <IconButton><MoreVertIcon /></IconButton>
+      }
+      targetOrigin={{horizontal: 'right', vertical: 'top'}}
+      anchorOrigin={{horizontal: 'right', vertical: 'top'}}>
+        <MenuItem primaryText="Refresh" />
+        <MenuItem primaryText="Help" />
+        <MenuItem primaryText="Sign out" onClick={(event)=> onSignOutClick()} />
+      </IconMenu>
+    </div>
   );
 }
 
@@ -43,25 +39,24 @@ class Header extends React.Component{
     super(props);
   }
 
-
-
   render(){
     let {user} = this.props;
     console.log('------------------ >>> Header <<< ------------------');
     console.log(user);
     return(
       <header>
-        <AppBar
-          title="FleetBook"
-          iconElementLeft = {<FleetBookLogo style={{color:'#ccc', fontSize:'38px'}} />}
-          style={{backgroundColor:'#2b2b2b', position:'fixed', left:0, top:0}}
-          iconElementRight={(user) ? <AfterLogged onSignOutClick={this.props.onSignOutClick} /> : <BeforeLogged />}
-          iconStyleRight={{margin:'0px'}}
-        />
+        <nav className="navbar navbar-light bg-light fixed-top  justify-content-between">
+        <a href="#/" className="navbar-brand icon--group">
+          <div><i className="fa fa-bus fa-2x" /></div>
+          <div>FleetBook</div>
+        </a>
+        <div className="nav navbar-nav navbar-right">
+          {(user) ? <Privateview onSignOutClick={this.props.onSignOutClick} /> : <Publicview/>}
+        </div>
+        </nav>
       </header>
     );
   }
-
 }
 
 export default Header;

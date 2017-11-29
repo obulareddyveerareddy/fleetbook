@@ -4,8 +4,6 @@ import path       from 'path';
 import config     from '../webpack.config';
 import bodyParser from 'body-parser';
 import morgan     from 'morgan';
-import jwt        from 'jsonwebtoken';
-import cfg        from './config';
 
 const port     = 3000;
 const app      = express();
@@ -20,25 +18,14 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('*', function(req, res) {
+app.get('/', function(req, res) {
+  console.log('------------------- >>> This is default get route <<< -------------------');
   res.sendFile(path.join( __dirname, '../src/index.html'));
 });
 
-app.post("/api/user/validate",  function(req, res) {
-  console.log('------------------->>> /api/user/validate <<<-------------------');
-  console.log(req.body);
-  console.log(req.body.userName);
-  console.log(req.body.userPassword);
-  let payload = {userName:req.body.userName, firstName:'Veera Reddy', lastName:'obulareddy', mobile:'+918105555322'}
-  var token = jwt.sign(payload, cfg.jwtSecret , { expiresIn: cfg.jwtSession.expiresIn  });
+require('./api/FleetOperationsAPI')(app);
+require('./api/UserApi')(app);
 
-  // return the information including token as JSON
-  res.json({
-    success: true,
-    message: 'Enjoy your token!',
-    token: token
-  });
-});
 
 app.listen(port, function(err) {
   if (err) {

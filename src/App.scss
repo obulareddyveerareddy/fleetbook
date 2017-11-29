@@ -1,7 +1,7 @@
 // google fonts
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700);
-@import url(http://fonts.googleapis.com/css?family=Cabin);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+@import url(http://fonts.googleapis.com/css?family=Lato);
+@import url(http://fonts.googleapis.com/css?family=Tangerine);
 // Font Variables
 $roboto-slab: Roboto Slab, serif;
 $open-sans: Open Sans, sans-serif;
@@ -22,9 +22,8 @@ body, html{
   width: 100%;
   margin:0px;
   padding:0px;
-  font-family:$font-cabin;
-  background-color:$color-palette-ccc;
-  color:#000;
+  font-family:Ubuntu;
+  color:#e4e5e6;
 
   .fullwidthheight, #app, main{
     width: 100%;
@@ -54,8 +53,7 @@ body, html{
   }
 
   .container--flex .sidemenu{
-    //flex-grow: 1;
-    border-right:1px solid $header-bg-color;
+    flex-basis: 20%;
     height: 100%;
   }
 
@@ -69,5 +67,23 @@ body, html{
 
   .contentspace{
     flex-grow: 9;
+  }
+
+  .sidebar{
+    position: fixed;
+    top: 3.8rem;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 20px 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 1px solid #eee;
+    box-shadow: 2px 2px 2px #c2cfd6;
+    background-color:#e9ecef !important;
+    
+    .nav-item{
+      padding:0.3rem;
+    }
   }
 }

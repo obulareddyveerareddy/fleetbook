@@ -1,55 +1,17 @@
-// google fonts
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700);
-// Font Variables
-$roboto-slab: Roboto+Slab, serif;
-$open-sans: Open Sans, sans-serif;
-$font-stack: Helvetica, sans-serif;
-$header-bg-color:#2b2b2b;
-$color-palette-eecc3d: #eecc3d;
-$color-palette-ccc: #ccc;
-$color-palette-363636:#363636;
 
-$color-palette-header-first: #fd776c;
-$color-palette-header-second:#b6a06c;
-$color-palette-header-third:#7b5a6d;
-
-#navbar{
-
-  color:#ccc;
-  height:100%;
-
-  ul {
-    display:table;
-    margin: 0;
-    height: 100%; /* any small value will work */
-    list-style-type: none;
-    text-align: center;
-    background-color: transparent;
+$header-nav-bgc: #fff;
+header{
+  .icon--group{
+    display:flex;
+    justify-content: space-around;
   }
 
-  ul li {
-    display: table-cell;
-    border-top: 10px #2b2b2b solid;
-    width: 100px;
-    height:100%;
+  .icon--group div{
+    margin-right:0.5rem;
   }
 
-  ul li a {
-    display: block;
-    text-decoration: none;
-    height:100%;
-    color: #fff;
-    padding:1em;
+  .navbar{
+    background-color: $header-nav-bgc !important;
+    border-bottom: 2px solid #c2cfd6;
   }
-
-  ul li:hover {
-    height:100%;
-    background-color: $color-palette-363636;
-  }
-
-  .active{
-    background-color: $color-palette-363636;
-  }
-
 }

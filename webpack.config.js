@@ -28,6 +28,12 @@ module.exports = {
         }),
         new ExtractTextPlugin("style.css"),
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+          'window.jQuery': 'jquery',
+          Popper: ['popper.js', 'default']
+        })
     ],
     module: {
       rules: [
@@ -43,12 +49,28 @@ module.exports = {
           use: [{"loader":"file-loader","options":{"name":"assets/img/[name].[ext]"}},{"loader":"image-webpack-loader","options":{"mozjpeg":{"quality":65},"pngquant":{"quality":"10-20","speed":4},"svgo":{"plugins":[{"removeViewBox":false},{"removeEmptyAttrs":false}]},"gifsicle":{"optimizationLevel":7,"interlaced":false},"optipng":{"optimizationLevel":7,"interlaced":false}}}]
         },
         {
-          test: /\.scss$/,
-          loader: "webpack-sass"
-        },
-        {
           test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
           loader: 'url-loader?limit=10000',
+        },
+        {
+          test: /\.(scss)$/,
+          use: [{
+            loader: 'style-loader', // inject CSS to page
+          }, {
+            loader: 'css-loader', // translates CSS into CommonJS modules
+          }, {
+            loader: 'postcss-loader', // Run post css actions
+            options: {
+              plugins: function () { // post css plugins, can be exported to postcss.config.js
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ];
+              }
+            }
+          }, {
+            loader: 'sass-loader' // compiles SASS to CSS
+          }]
         },
       ],
     },
